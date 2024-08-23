@@ -51,29 +51,68 @@ input.onLogoEvent(TouchButtonEvent.LongPressed, function () {
 })
 input.onButtonPressed(Button.A, function () {
     if (true) {
-        quest_Note_1.quest_Show_String_For_Note_Small_Func(
-        "Important Coding Note: Only 1 Input Stack for Button A||B Allowed for 'main/main_backend.ts'"
-        )
-        if (_system_Sw_ModeState__Now__Id_Int == _system_Sw_ModeState__Edit_GroupChannelNum__ID_INT) {
-            quest_Note_3.quest_Show_String_For_Note_Big_Func(
-            "Buttons A & B Dual Usage: Usage #2: Given Network_Paired, Increment 'GroupChannelNum' when in Respective Edit Mode"
+        if (true) {
+            quest_Note_3.quest_Show_String_For_Note_Small_Func(
+            "Servo_Motors: Right Only"
             )
-            device_Mode_Edit_GroupChannelNum_ButtonA_Func()
-        } else if (_system_Hw_DeviceType__Now__Id_Int == _system_Hw_DeviceType__Null__ID_INT) {
-            quest_Note_3.quest_Show_String_For_Note_Big_Func(
-            "Buttons A & B Dual Usage: Usage #1: Designate this micro:bit as Controller_Joystick to *Start* Network_Pairing w/ Bot"
+            quest_Note_2.quest_Show_String_For_Note_Small_Func(
+            "50% Power for Medium Speed"
             )
-            quest_Note_1.quest_Show_String_For_Note_Big_Func(
-            "Code Activation of Controller_Joystick:: 1of2 : 1st micro:bit Being Pressed of Button A||B is Designated as Device:Controller_Joystick"
+            quest_Note_2.quest_Show_String_For_Note_Small_Func(
+            "0% Power for Stop"
             )
-            _system_Hw_DeviceType__Now__Id_Int = _system_Hw_DeviceType__Controller_Joystick__ID_INT
-            _system_Sw_ModeState__Now__Id_Int = _system_Sw_ModeState__Run__AndShow_02_GroupChannelNum__ID_INT
-            screen_Clear_Func()
-            setup_ControllerOnly_Func()
+            quest_Motors.quest_Set_PowerMotorsViaBlueRedBlackPins_Func(
+            quest_PortGroup_BlueRedBlack_PortIds_Enum.S1_MotorLeft__S0_MotorRight,
+            0,
+            50
+            )
         }
-        quest_Note_6.quest_Show_String_For_Note_Big_Func(
-        "Level 2.1: Variables_n_Constants_Yes"
-        )
+        if (true) {
+            quest_Note_1.quest_Show_String_For_Note_Small_Func(
+            "From Driver's Viewpoint, Bot's micro:bit is upside_down so set Led_Display_Screen likewise: Begin"
+            )
+            display.rotateTo(display.Direction.UpsideDown)
+            basic.showLeds(`
+                . . . # .
+                . . # # #
+                . . . # .
+                . . . # .
+                . # . # .
+                `)
+            quest_Note_1.quest_Show_String_For_Note_Small_Func(
+            "Continue Current State for Time Below"
+            )
+            quest_Timer.quest_Set_ContinueCurrentState_CountdownTimer_Func(3, quest_Time_Units_Enum.Seconds)
+        }
+    }
+    if (true) {
+        if (true) {
+            quest_Note_3.quest_Show_String_For_Note_Small_Func(
+            "Servo_Motors: All Stop"
+            )
+            quest_Motors.quest_Set_PowerMotorsViaBlueRedBlackPins_Func(
+            quest_PortGroup_BlueRedBlack_PortIds_Enum.S1_MotorLeft__S0_MotorRight,
+            0,
+            0
+            )
+        }
+        if (true) {
+            quest_Note_1.quest_Show_String_For_Note_Small_Func(
+            "From Driver's Viewpoint, Bot's micro:bit is upside_down so set Led_Display_Screen likewise: Begin"
+            )
+            display.rotateTo(display.Direction.UpsideDown)
+            basic.showLeds(`
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                . # . # .
+                `)
+            quest_Note_1.quest_Show_String_For_Note_Small_Func(
+            "Continue Current State for Time Below"
+            )
+            quest_Timer.quest_Set_ContinueCurrentState_CountdownTimer_Func(3, quest_Time_Units_Enum.Seconds)
+        }
     }
 })
 // BUG FIX: Switch from BlockCode vs TextCode
@@ -222,77 +261,70 @@ joystickbit.onButtonEvent(joystickbit.JoystickBitPin.P15, joystickbit.ButtonType
     }
 })
 input.onButtonPressed(Button.AB, function () {
-    // //jwc o if (device_Type_Controller_Bool || device_Type_Bot_Bool) {
-    if (_system_Hw_DeviceType__Now__Id_Int == _system_Hw_DeviceType__Bot__ID_INT || _system_Hw_DeviceType__Now__Id_Int == _system_Hw_DeviceType__Controller_Joystick__ID_INT) {
-        // //jwc o device_Mode_Edit__GroupChannelNum__Bool = !(device_Mode_Edit__GroupChannelNum__Bool)
-        // //jwc o if (!(device_Mode_Edit__GroupChannelNum__Bool)) {
-        // //jwc o     quest_Note_2.quest_Show_String_For_Note_Small_Func(
-        // //jwc o         "If just left 'groupChannel_Edit_Mode', then Reset 'radio set group'"
-        // //jwc o     )
-        // //jwc o     network_GroupChannel_MyBotAndController_Base0_Int = network_GroupChannel_MyBotAndController_Base0__Digit_Tens__Int * 10 + network_GroupChannel_MyBotAndController_Base0__Digit_Ones__Int * 1
-        // //jwc o     radio.setGroup(network_GroupChannel_MyBotAndController_Base0_Int)
-        // //jwc o } else {
-        // //jwc o     quest_Note_2.quest_Show_String_For_Note_Small_Func(
-        // //jwc o         "If just entered 'groupChannel_Edit_Mode':"
-        // //jwc o     )
-        // //jwc o     network_GroupChannel_MyBotAndController_Base0__Digit_Tens__Int = Math.idiv(network_GroupChannel_MyBotAndController_Base0_Int, 10)
-        // //jwc o     network_GroupChannel_MyBotAndController_Base0__Digit_Ones__Int = network_GroupChannel_MyBotAndController_Base0_Int % 10
-        // //jwc o }
-        // //jwc o network_GroupChannel_Show_Func()
-        if (_system_Sw_ModeState__Now__Id_Int == _system_Sw_ModeState__Run__AndShow_01_DeviceType__ID_INT || _system_Sw_ModeState__Now__Id_Int == _system_Sw_ModeState__Run__AndShow_02_GroupChannelNum__ID_INT) {
-            quest_Note_2.quest_Show_String_For_Note_Small_Func(
-            "Just entered the above_conditioned 'if then' state and will process accordingly as needed:"
+    if (true) {
+        if (true) {
+            quest_Note_3.quest_Show_String_For_Note_Small_Func(
+            "Servo_Motors: Left & Right"
             )
-            _system_Sw_ModeState__Now__Id_Int = _system_Sw_ModeState__Edit_GroupChannelNum__ID_INT
-            network_GroupChannel_MyBotAndController_Base0__Digit_Hundreds__Int = Math.idiv(network_GroupChannel_MyBotAndController_Base0_Int, 100)
-            network_GroupChannel_MyBotAndController_Base0__Digit_Tens__Int = Math.idiv(network_GroupChannel_MyBotAndController_Base0_Int - network_GroupChannel_MyBotAndController_Base0__Digit_Hundreds__Int * 100, 10)
-            network_GroupChannel_MyBotAndController_Base0__Digit_Ones__Int = Math.idiv(network_GroupChannel_MyBotAndController_Base0_Int - (network_GroupChannel_MyBotAndController_Base0__Digit_Hundreds__Int * 100 + network_GroupChannel_MyBotAndController_Base0__Digit_Tens__Int * 10), 1)
-            if (true) {
-                quest_Note_1.quest_Show_String_For_Note_Small_Func(
-                "Since not enough input buttons to allow manual override of hundreds_digit, will override hundreds_digit to always be 0, to stabilize at a known value"
-                )
-                network_GroupChannel_MyBotAndController_Base0__Digit_Hundreds__Int = 0
-            }
-        } else if (_system_Sw_ModeState__Now__Id_Int == _system_Sw_ModeState__Edit_GroupChannelNum__ID_INT) {
             quest_Note_2.quest_Show_String_For_Note_Small_Func(
-            "Just exited the above_conditioned 'if then' state and will process accordingly as needed:"
+            "50% Power for Medium Speed"
             )
-            _system_Sw_ModeState__Now__Id_Int = _system_Sw_ModeState__Run__AndShow_01_DeviceType__ID_INT
-            network_GroupChannel_MyBotAndController_Base0_Int = network_GroupChannel_MyBotAndController_Base0__Digit_Hundreds__Int * 100 + (network_GroupChannel_MyBotAndController_Base0__Digit_Tens__Int * 10 + network_GroupChannel_MyBotAndController_Base0__Digit_Ones__Int * 1)
-            radio.setGroup(network_GroupChannel_MyBotAndController_Base0_Int)
+            quest_Note_2.quest_Show_String_For_Note_Small_Func(
+            "0% Power for Stop"
+            )
+            quest_Motors.quest_Set_PowerMotorsViaBlueRedBlackPins_Func(
+            quest_PortGroup_BlueRedBlack_PortIds_Enum.S1_MotorLeft__S0_MotorRight,
+            50,
+            50
+            )
         }
-    } else if (_system_Hw_DeviceType__Now__Id_Int == _system_Hw_DeviceType__Null__ID_INT) {
-        // //jwc debug: serial.writeLine("HW_Null: SW_Null >> SW_Edit")
-        // //jwc debug: serial.writeLine("HW_Null: SW_Edit >> SW_Null")
-        if (_system_Sw_ModeState__Now__Id_Int == _system_Sw_ModeState__Null__ID_INT) {
-            quest_Note_2.quest_Show_String_For_Note_Small_Func(
-            "Just entered the above_conditioned 'if then' state and will process accordingly as needed:"
+        if (true) {
+            quest_Note_1.quest_Show_String_For_Note_Small_Func(
+            "From Driver's Viewpoint, Bot's micro:bit is upside_down so set Led_Display_Screen likewise: Begin"
             )
-            _system_Sw_ModeState__Now__Id_Int = _system_Sw_ModeState__Edit_GroupChannelNum__ID_INT
-            network_GroupChannel_MyBotAndController_Base0__Digit_Hundreds__Int = Math.idiv(network_GroupChannel_MyBotAndController_Base0_Int, 100)
-            network_GroupChannel_MyBotAndController_Base0__Digit_Tens__Int = Math.idiv(network_GroupChannel_MyBotAndController_Base0_Int - network_GroupChannel_MyBotAndController_Base0__Digit_Hundreds__Int * 100, 10)
-            network_GroupChannel_MyBotAndController_Base0__Digit_Ones__Int = Math.idiv(network_GroupChannel_MyBotAndController_Base0_Int - (network_GroupChannel_MyBotAndController_Base0__Digit_Hundreds__Int * 100 + network_GroupChannel_MyBotAndController_Base0__Digit_Tens__Int * 10), 1)
-            if (true) {
-                quest_Note_1.quest_Show_String_For_Note_Small_Func(
-                "Since not enough input buttons to allow manual override of hundreds_digit, will override hundreds_digit to always be 0, to stabilize at a known value"
-                )
-                network_GroupChannel_MyBotAndController_Base0__Digit_Hundreds__Int = 0
-            }
-        } else if (_system_Sw_ModeState__Now__Id_Int == _system_Sw_ModeState__Edit_GroupChannelNum__ID_INT) {
-            quest_Note_2.quest_Show_String_For_Note_Small_Func(
-            "Just entered the above_conditioned 'if then' state and will process accordingly as needed:"
+            display.rotateTo(display.Direction.UpsideDown)
+            basic.showLeds(`
+                . # . # .
+                # # # # #
+                . # . # .
+                . # . # .
+                . # . # .
+                `)
+            quest_Note_1.quest_Show_String_For_Note_Small_Func(
+            "Continue Current State for Time Below"
             )
-            _system_Sw_ModeState__Now__Id_Int = _system_Sw_ModeState__Null__ID_INT
-            network_GroupChannel_MyBotAndController_Base0_Int = network_GroupChannel_MyBotAndController_Base0__Digit_Hundreds__Int * 100 + (network_GroupChannel_MyBotAndController_Base0__Digit_Tens__Int * 10 + network_GroupChannel_MyBotAndController_Base0__Digit_Ones__Int * 1)
-            radio.setGroup(network_GroupChannel_MyBotAndController_Base0_Int)
+            quest_Timer.quest_Set_ContinueCurrentState_CountdownTimer_Func(3, quest_Time_Units_Enum.Seconds)
         }
     }
-    if (false) {
-        serial.writeLine("24-0714-2351> " + network_GroupChannel_MyBotAndController_Base0_Int + " " + network_GroupChannel_MyBotAndController_Base0__Digit_Hundreds__Int + " " + network_GroupChannel_MyBotAndController_Base0__Digit_Tens__Int + " " + network_GroupChannel_MyBotAndController_Base0__Digit_Ones__Int)
+    if (true) {
+        if (true) {
+            quest_Note_3.quest_Show_String_For_Note_Small_Func(
+            "Servo_Motors: All Stop"
+            )
+            quest_Motors.quest_Set_PowerMotorsViaBlueRedBlackPins_Func(
+            quest_PortGroup_BlueRedBlack_PortIds_Enum.S1_MotorLeft__S0_MotorRight,
+            0,
+            0
+            )
+        }
+        if (true) {
+            quest_Note_1.quest_Show_String_For_Note_Small_Func(
+            "From Driver's Viewpoint, Bot's micro:bit is upside_down so set Led_Display_Screen likewise: Begin"
+            )
+            display.rotateTo(display.Direction.UpsideDown)
+            basic.showLeds(`
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                . # . # .
+                `)
+            quest_Note_1.quest_Show_String_For_Note_Small_Func(
+            "Continue Current State for Time Below"
+            )
+            quest_Timer.quest_Set_ContinueCurrentState_CountdownTimer_Func(3, quest_Time_Units_Enum.Seconds)
+        }
     }
-    quest_Note_6.quest_Show_String_For_Note_Big_Func(
-    "Level 2.1: Variables_n_Constants_Yes"
-    )
 })
 radio.onReceivedString(function (receivedString) {
     quest_Note_6.quest_Show_String_For_Note_Big_Func(
@@ -488,30 +520,68 @@ screen_IconMessage_Func("error")
 })
 input.onButtonPressed(Button.B, function () {
     if (true) {
-        quest_Note_1.quest_Show_String_For_Note_Small_Func(
-        "Important Coding Note: Only 1 Input Stack for Button A||B Allowed for 'main/main_backend.ts'"
-        )
-        // //jwc o if (!(device_Type_Controller_Bool) && !(device_Type_Bot_Bool)) {
-        if (_system_Sw_ModeState__Now__Id_Int == _system_Sw_ModeState__Edit_GroupChannelNum__ID_INT) {
-            quest_Note_3.quest_Show_String_For_Note_Big_Func(
-            "'Buttons A & B' Dual Usage: Usage #2: Given Network_Paired, Increment 'GroupChannelNum' when in Respective Edit Mode"
+        if (true) {
+            quest_Note_3.quest_Show_String_For_Note_Small_Func(
+            "Servo_Motors: Left Only"
             )
-            device_Mode_Edit_GroupChannelNum_ButtonB_Func()
-        } else if (_system_Hw_DeviceType__Now__Id_Int == _system_Hw_DeviceType__Null__ID_INT) {
-            quest_Note_3.quest_Show_String_For_Note_Big_Func(
-            "'Buttons A & B' Dual Usage: Usage #1: Designate this micro:bit as Controller_Joystick to *Start* Network_Pairing w/ Bot"
+            quest_Note_2.quest_Show_String_For_Note_Small_Func(
+            "50% Power for Medium Speed"
             )
-            quest_Note_1.quest_Show_String_For_Note_Big_Func(
-            "Code Activation of Controller_Joystick:: 1of2 : 1st micro:bit Being Pressed of Button A||B is Designated as Device:Controller_Joystick"
+            quest_Note_2.quest_Show_String_For_Note_Small_Func(
+            "0% Power for Stop"
             )
-            _system_Hw_DeviceType__Now__Id_Int = _system_Hw_DeviceType__Controller_Joystick__ID_INT
-            _system_Sw_ModeState__Now__Id_Int = _system_Sw_ModeState__Run__AndShow_02_GroupChannelNum__ID_INT
-            screen_Clear_Func()
-            setup_ControllerOnly_Func()
+            quest_Motors.quest_Set_PowerMotorsViaBlueRedBlackPins_Func(
+            quest_PortGroup_BlueRedBlack_PortIds_Enum.S1_MotorLeft__S0_MotorRight,
+            50,
+            0
+            )
         }
-        quest_Note_6.quest_Show_String_For_Note_Big_Func(
-        "Level 2.1: Variables_n_Constants_Yes"
-        )
+        if (true) {
+            quest_Note_1.quest_Show_String_For_Note_Small_Func(
+            "From Driver's Viewpoint, Bot's micro:bit is upside_down so set Led_Display_Screen likewise: Begin"
+            )
+            display.rotateTo(display.Direction.UpsideDown)
+            basic.showLeds(`
+                . # . . .
+                # # # . .
+                . # . . .
+                . # . . .
+                . # . # .
+                `)
+            quest_Note_1.quest_Show_String_For_Note_Small_Func(
+            "Continue Current State for Time Below"
+            )
+            quest_Timer.quest_Set_ContinueCurrentState_CountdownTimer_Func(3, quest_Time_Units_Enum.Seconds)
+        }
+    }
+    if (true) {
+        if (true) {
+            quest_Note_3.quest_Show_String_For_Note_Small_Func(
+            "Servo_Motors: All Stop"
+            )
+            quest_Motors.quest_Set_PowerMotorsViaBlueRedBlackPins_Func(
+            quest_PortGroup_BlueRedBlack_PortIds_Enum.S1_MotorLeft__S0_MotorRight,
+            0,
+            0
+            )
+        }
+        if (true) {
+            quest_Note_1.quest_Show_String_For_Note_Small_Func(
+            "From Driver's Viewpoint, Bot's micro:bit is upside_down so set Led_Display_Screen likewise: Begin"
+            )
+            display.rotateTo(display.Direction.UpsideDown)
+            basic.showLeds(`
+                . . . . .
+                . . . . .
+                . . . . .
+                . . . . .
+                . # . # .
+                `)
+            quest_Note_1.quest_Show_String_For_Note_Small_Func(
+            "Continue Current State for Time Below"
+            )
+            quest_Timer.quest_Set_ContinueCurrentState_CountdownTimer_Func(3, quest_Time_Units_Enum.Seconds)
+        }
     }
 })
 joystickbit.onButtonEvent(joystickbit.JoystickBitPin.P14, joystickbit.ButtonType.up, function () {
@@ -722,9 +792,6 @@ input.onLogoEvent(TouchButtonEvent.Pressed, function () {
         }
     }
 })
-let network_GroupChannel_MyBotAndController_Base0__Digit_Ones__Int = 0
-let network_GroupChannel_MyBotAndController_Base0__Digit_Tens__Int = 0
-let network_GroupChannel_MyBotAndController_Base0__Digit_Hundreds__Int = 0
 let servoArm_Right_Up_Bool = false
 let servoArm_Left_Up_Bool = false
 let servoArm_Right_UP_DEGREES_INT = 0
@@ -734,8 +801,6 @@ let motor_Power_Gear_02_MAX = 0
 let motor_Power_Gear_01_MAX = 0
 let _system_Sw_ModeState__Test__ID_INT = 0
 let _system_Sw_ModeState__Autonomous__ID_INT = 0
-let _system_Sw_ModeState__Run__AndShow_01_DeviceType__ID_INT = 0
-let _system_Sw_ModeState__Null__ID_INT = 0
 let screen_Delay_MSEC_INT = 0
 let motor_Power_Gear_Number_Int = 0
 let motor_Power_ZERO_INT = 0
@@ -746,19 +811,24 @@ let controller__Polar_OriginAtCenter__MagnitudePixel__Int = 0
 let controller__Polar_OriginAtCenter__AngleDegree__AsIncremented_By__Int = 0
 let controller__Polar_OriginAtCenter__AngleDegree__Int = 0
 let controller__Polar_OriginAtCenter__MagnitudePixel__IdleDeadzone_Max512__INT = 0
-let _system_Hw_DeviceType__Bot__ID_INT = 0
-let _system_Sw_ModeState__Run__AndShow_02_GroupChannelNum__ID_INT = 0
-let _system_Hw_DeviceType__Controller_Joystick__ID_INT = 0
-let _system_Hw_DeviceType__Null__ID_INT = 0
-let _system_Hw_DeviceType__Now__Id_Int = 0
-let _system_Sw_ModeState__Edit_GroupChannelNum__ID_INT = 0
 let _system_Sw_ModeState__Reset__ID_INT = 0
-let _system_Sw_ModeState__Now__Id_Int = 0
 let screenBrightness_Heartbeat_Count_Int = 0
 let screen_XY_Brightness_Old_Num = 0
 let screen_Y_Old_Num = 0
 let screen_X_Old_Num = 0
 let network_GroupChannel_MyBotAndController_Base0_Int = 0
+let _system_Sw_ModeState__Now__Id_Int = 0
+let _system_Sw_ModeState__Edit_GroupChannelNum__ID_INT = 0
+let _system_Hw_DeviceType__Now__Id_Int = 0
+let _system_Hw_DeviceType__Null__ID_INT = 0
+let _system_Hw_DeviceType__Controller_Joystick__ID_INT = 0
+let _system_Sw_ModeState__Run__AndShow_02_GroupChannelNum__ID_INT = 0
+let _system_Hw_DeviceType__Bot__ID_INT = 0
+let _system_Sw_ModeState__Null__ID_INT = 0
+let _system_Sw_ModeState__Run__AndShow_01_DeviceType__ID_INT = 0
+let network_GroupChannel_MyBotAndController_Base0__Digit_Hundreds__Int = 0
+let network_GroupChannel_MyBotAndController_Base0__Digit_Tens__Int = 0
+let network_GroupChannel_MyBotAndController_Base0__Digit_Ones__Int = 0
 if (true) {
     quest_Note_1.quest_Show_String_For_Note_Big_Func(
     "©️ 2024 Quest Institute. All rights reserved."
